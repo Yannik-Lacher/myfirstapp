@@ -1,4 +1,8 @@
 id: myfirstapp
 name: myfirstapp
 self: https://github.com/
-owner: owner@leanix.net
+owner: yannik.lacher@leanix.net
+teams:
+  - cider
+products:
+  - FirstAppProduct
