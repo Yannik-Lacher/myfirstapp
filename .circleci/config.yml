@@ -1,14 +1,8 @@
 
-# VSM Integration Job
-  jobs: 
-    VSM_Int:
-      commands:
+deployment:
+  production:
+    branch: "TEST"
+    commands:
       - ./build/build_script.sh
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-workflows:
 
-  Integrate:
-    jobs:
-      - VSM_Int
