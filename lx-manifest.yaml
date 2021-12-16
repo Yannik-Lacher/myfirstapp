@@ -1,7 +1,7 @@
 id: myfirstapp
-name: myfirstapp
+name: myfirstappCircle
 self: https://github.com/Yannik-Lacher/myfirstapp/blob/master/lx-manifest.yaml
-description: First app to showcase CICD integration.
+description: First app to showcase CircleCICD integration.
 owner: yannik.lacher@leanix.net
 links:
   - name: Github
