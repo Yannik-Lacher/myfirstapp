@@ -1,5 +1,13 @@
 language: node_js
 node_js:
   - lts/*
-after_success:
-- ./build/build_script.sh
+# VSM Integration Job
+  jobs: 
+    VSM_Int:
+      commands:
+      - ./build/build_script.sh
+# Orchestrate our job run sequence
+workflows:
+  Integrate:
+    jobs:
+      - VSM_Int
