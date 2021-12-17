@@ -36,17 +36,10 @@ jobs:
           # Absolute path for lx-manifest.yaml
           # version, stage & dependencyManager (hardcoded for this sample code)
           # -F dependencies=@"$CIRCLE_WORKING_DIRECTORY/build/dependencies.json"
-          curl: -X POST \
-  -H: 'Cache-Control: no-cache' \
-  -H: "Authorization: Bearer ${TOKEN}" \
-  -H: 'Content-Type: multipart/form-data' \
-  -F: manifest=@"$CIRCLE_WORKING_DIRECTORY/lx-manifest.yaml" \
-  -F: 'data={
-  "version": "1.1.0",
-  "stage": "dev",
-}' \
-https://$HOST/services/cicd-connector/v2/deployment
-        '''
+          curl: -X POST 
+  -H 'Cache-Control: no-cache' \
+  -H "Authorization: Bearer ${TOKEN}" \
+  -H 'Content-Type: multipart/form-data' -F manifest=@"$CIRCLE_WORKING_DIRECTORY/lx-manifest.yaml" -F 'data={ "version": "1.1.0", "stage": "dev",}' https://$HOST/services/cicd-connector/v2/deployment'''
  
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
