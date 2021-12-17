@@ -18,11 +18,11 @@ jobs:
     steps:
    #   - run:
    #       name: Install license checker
-   #       command: npm install license-checker    
+   #       command: npm install license-checker  
+      - run: touch ./circleci/build_script.sh
       - run:
           name: "Integrate VSM"
-          dir: ./circleci
-          command: chmod +x build_script.sh
+          command: chmod +x ./circleci/build_script.sh
  
 
   
