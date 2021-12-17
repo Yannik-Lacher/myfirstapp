@@ -24,7 +24,7 @@ jobs:
           name: "Integrate VSM"
           command: sh '''
           # If MI_DEV_HOST isn't set in Circle, a default value is used
-          export HOST=${MI_DEV_HOST:-demo-eu.leanix.net}
+          export: HOST=${MI_DEV_HOST:-demo-eu.leanix.net}
 
           # Fetch bearer token
           # export SYNC_URL="https://${HOST}/services/integration-api/v1/synchronizationRuns"
