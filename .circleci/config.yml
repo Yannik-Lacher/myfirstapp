@@ -17,11 +17,13 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - run:
-          name: "Integrate VSM"
-          command: chmod +x ./circleci/build_script.sh
-      - run:
           name: Install license checker
-          command: yarn global add license-checker     
+          command: yarn global add license-checker    
+      - run:
+          name: "Integrate VSM"
+          dir: ./circleci
+          command: chmod +x ./circleci/build_script.sh
+ 
 
   
 # Invoke jobs via workflows
