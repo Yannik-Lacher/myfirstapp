@@ -18,11 +18,11 @@ jobs:
     steps:
    #   - run:
    #       name: Install license checker
-   #       command: yarn global add license-checker    
+   #       command: npm install license-checker    
       - run:
           name: "Integrate VSM"
           dir: ./circleci
-          command: chmod +x ./circleci/build_script.sh
+          command: chmod +x build_script.sh
  
 
   
