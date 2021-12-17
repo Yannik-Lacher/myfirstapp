@@ -19,8 +19,6 @@ jobs:
      - run:
           command: yarn global add license-checker
           name: Install license checker
-
-      - checkout
       - run:
           name: "Integrate VSM"
           command: sh - ./build/build_script.sh
