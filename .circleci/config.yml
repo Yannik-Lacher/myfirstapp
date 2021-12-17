@@ -16,9 +16,10 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-     - run:
-         name: Install license checker
-         command: npm install license-checker  
+   #   - run:
+   #       name: Install license checker
+   #       command: npm install license-checker  
+  
       - run:
           name: "Integrate VSM"
           command: sh '''
@@ -35,8 +36,8 @@ jobs:
           # Absolute path for dependencies.json
           # Absolute path for lx-manifest.yaml
           # version, stage & dependencyManager (hardcoded for this sample code)
-  -F dependencies=@"$CIRCLE_WORKING_DIRECTORY/build/dependencies.json"
-  curl -X POST \
+          # -F dependencies=@"$CIRCLE_WORKING_DIRECTORY/build/dependencies.json"
+          curl -X POST \
   -H 'Cache-Control: no-cache' \
   -H "Authorization: Bearer ${TOKEN}" \
   -H 'Content-Type: multipart/form-data' \
