@@ -19,13 +19,36 @@ jobs:
    #   - run:
    #       name: Install license checker
    #       command: npm install license-checker  
-      - run: touch ./circleci/build_script.sh
+  
       - run:
           name: "Integrate VSM"
-          command: chmod +x ./circleci/build_script.sh
- 
+          command: sh '''
+          # If VSM_DEV_HOST isn't set in Circle, a default value is used
+          export HOST=${MI_DEV_HOST:-demo-eu.leanix.net}
 
-  
+          # Fetch bearer token
+          #export SYNC_URL="https://${HOST}/services/integration-api/v1/synchronizationRuns"
+          TOKEN=$(curl -X POST --url https://${HOST}/services/mtm/v1/oauth2/token -u apitoken:${MI_DEV_TOKEN} --data grant_type=client_credentials | jq -r '.access_token') 
+
+          # API call to send the manifest file, dependencies and metadata to workspace
+          # Required input data in the API call:
+          # Bearer token (provided as a part of header)
+          # Absolute path for dependencies.json
+          # Absolute path for lx-manifest.yaml
+          # version, stage & dependencyManager (hardcoded for this sample code)
+          # -F dependencies=@"${WORKSPACE}/build/dependencies.json"
+          curl -X POST \
+  -H 'Cache-Control: no-cache' \
+  -H "Authorization: Bearer ${TOKEN}" \
+  -H 'Content-Type: multipart/form-data' \
+  -F manifest=@"${WORKSPACE}/lx-manifest.yaml" \
+  -F 'data={
+  "version": "1.1.0",
+  "stage": "dev",
+}' \
+https://$HOST/services/cicd-connector/v2/deployment
+        '''
+ 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
